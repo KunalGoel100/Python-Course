@@ -1,0 +1,907 @@
+<?xml version="1.0" ?>
+<LIMOOX xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.zf.com/DTEP/DFF">
+  <Module FunctionGroupDefault="ItfIn_Outp" name="ItfIn_Outp" nameM="ItfIn_Outp">
+    <ExternalInterface name="ItfIn_Outp" nameM="'ItfIn_Outp'">
+      <GetFunction name="c_TorsDamprAct" Type="t_fl.TEMPERATURE.C">
+        <code _="'((fl32)(80))'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="f_SeqActv" Type="t.TBOOL" IndexType="Def_Etsys.eSeq">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="st_TqCnvrTMdl_OutpSigsSts" Type="Def_Etsys.eStsSig">
+        <code _="'E_STS_SIG_INI'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_Clu_FltCod_CLUTCHOVERHEAT_Trig" Type="Def_Etsys.eClu">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_AdpnEEP_ValDel" Type="t.BITCODED.UBIT8">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_CmbEngStrtVrntPsbl" Type="t.BITCODED.UBIT16" if="CFG_OUTP_K0">
+        <code _="ItfCom_Etsys_Outp.ItfCom_Etsys_Outp_Ctrl.ctrl_CmbEngStrtVrntPsbl" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_CmbEngStrtVrntRcmd" Type="t.BITCODED.UBIT16" if="CFG_OUTP_K0">
+        <code _="ItfCom_Etsys_Outp.ItfCom_Etsys_Outp_Ctrl.ctrl_CmbEngStrtVrntRcmd" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_PwrFlowIncAbortPrevnSeq" Type="t.BITCODED.UBIT32">
+        <code _="'((ui32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_TranAbortReq" Type="t.BITCODED.UBIT32">
+        <code _="'((ui32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_SeqFctHybStgy" Type="Def_Etsys.eStHybSeq">
+        <code _="'E_ST_HYB_SEQ_0'" if="($Not(CFG_OUTP_K0)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="((CFG_OUTP_K0)) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_SpdShaftInMinReqByAdpn" Type="t.BITCODED.UBIT16">
+        <code _="ItfCom_Etsys_Outp.ItfCom_Etsys_Outp_Adpn.ctrl_SpdShaftInMinReqByAdpn" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_LockgDevPrkgLockMeclErr" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_LoRngActvd" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_PwrFlowIncAbortPrevnNotActv" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_ReqToDrvActv" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_TrsmHydShtdwnActv" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_NCE_Req" Type="t.TBOOL">
+        <code _="'((tBool) 0)'" if="$Not(CFG_OUTP_K0) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="CFG_OUTP_K0 $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_NShaftInReqShiftActv" Type="t.TBOOL" if="CFG_OUTP_HYD_GEN2">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_NShaftInReq" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_N_TCC_DifReqOffActv" Type="t.TBOOL">
+        <code _="'((tBool) 0)'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_SyncActDetd" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_SyncTarDetd" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_TCC_SlipDecouplTqFrznActv" Type="t.TBOOL" if="CFG_OUTP_TC">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_TCC_SlipDecouplNTrfFinshd" Type="t.TBOOL" if="CFG_OUTP_TC">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_TCC_SlipDecouplTqFrznPas" Type="t.TBOOL" if="CFG_OUTP_TC">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="idx_CluClsdAct" Type="Def_Etsys_MecObsvr.eCluClsdAll">
+        <code _="ItfCom_Etsys_Outp.ItfCom_Etsys_Outp_SigProvdr.idx_CluClsdAct" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="idx_DynSeqFct" Type="Def_Etsys.eIdxDyn" IndexType="Def_Etsys.eSeqFctIdxDyn">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="idx_HybModChg" if="CFG_OUTP_K0" Type="Def_Etsys.eIdxHybModChg">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="idx_NeutLevChg" Type="Def_Etsys.eIdxNeutLevChg">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="idx_PwrFlowChg" Type="Def_Etsys.eIdxPwrFlowChg">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="idx_DynSeqFctShiftAllwdMax" Type="Def_Etsys.eIdxDyn">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="idx_PwrFlowFctActvd" Type="Def_Etsys.ePwrFlowFct">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="j_ShaftInJ1_Tar" Type="t_fl.INERTIA.J">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="j_ShaftInJ2_Tar" Type="t_fl.INERTIA.J_2">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_CE" Type="t_fl.SPEED.N" if="CFG_OUTP_HW_K0">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_CE_Req" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="$Not(CFG_OUTP_K0) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="CFG_OUTP_K0 $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_ShaftInReq" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_ShaftInMinReqCtrl" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_CE_Req_TestMod" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_EM_Req_TestMod" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_SyncActDif" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="$Not(CFG_OUTP_HYD_GEN2) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="CFG_OUTP_HYD_GEN2 $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="st_CluSeqFctReq" IndexType="Def_Etsys.eClu" Type="Def_Etsys.eSeq">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="st_CE_CylMod" Type="Def_Etsys.eStCECylMod">
+        <code _="'E_ST_CE_CYL_MOD_NONE'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_GearAct" Type="Def_Etsys.eGear">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_GearReqLimd" Type="Def_Etsys.eGear">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_GearTar" Type="Def_Etsys.eGear">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_GearReqExt" Type="Def_Etsys.eGear">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_ReqGearShiftSeq" Type="Def_Etsys.eGear">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_HybModTar" if="CFG_OUTP_K0" Type="Def_Etsys.eHybMod">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_NeutLevAct" Type="Def_Etsys.eNeutLev">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_NeutLevTar" Type="Def_Etsys.eNeutLev">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_N_TCC_OffReq" Type="Def_Etsys.eStNDiffReqOff">
+        <code _="'E_ST_N_DIFF_REQ_OFF_NONE'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_LockgDevPrkgLockCylReq" Type="Def_Etsys.eStLockgReqPrkgLock" if="(CFG_OUTP_PRKG_LOCK_DBL_LOCK_MDFD)">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_TqIntvTyp" Type="Def_Etsys.eStTqIntvTyp">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_UnlckLockgDevPrkgLockCylReq" Type="t.TBOOL">
+        <code _="'((ui8) (0))'" if="($Not(CFG_OUTP_PRKG_LOCK_BISTABLE)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="(CFG_OUTP_PRKG_LOCK_BISTABLE) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="st_CluReq" IndexType="Def_Etsys.eClu" Type="Def_Etsys.eCluStReq">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="st_SlipDecouplTqCnvrCluReq" Type="Def_Etsys.eStSlipDecouplTqCnvrCluCtrl">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_MainSeqFctShift" Type="Def_Etsys.eStMainSeq">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_SubSeqFctLnch" Type="Def_Etsys.eStSubSeq">
+        <code _="'E_ST_SUB_SEQ_PAS'" if="$Not(CFG_OUTP_ILC) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="CFG_OUTP_ILC $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_TrsmPosnReq" Type="Def_Etsys.ePos">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_MainSeqFctLnch" Type="Def_Etsys.eStMainSeq">
+        <code _="'E_ST_MAIN_SEQ_PAS'" if="$Not(CFG_OUTP_ILC) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="CFG_OUTP_ILC $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_SubSeqFctTqCnvrCluCtrlNext" Type="Def_Etsys.eStSubSeq">
+        <code _="'E_ST_SUB_SEQ_PAS'" if="$Not(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="CFG_OUTP_TC $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_TqCnvrCluModReq" Type="Def_Etsys.eCluMod">
+        <code _="'E_CLU_MOD_NONE'" if="$Not(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="CFG_OUTP_TC $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_TqShaftInDif" Type="Def_Etsys.eStTrnsTqShaftIn">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_DurnToEndMainTqIntv" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_SyncTarPred" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_SyncActPredShiftUpVirt" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_SyncTarPredShiftUpVirt" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_PredToStrtPRC_DirChg" if="CFG_OUTP_ILC" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_SyncActPredShiftDwnVirt" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_SyncTarPredShiftDwnVirt" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_PrepnRatChgTar" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_RatChgTar" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_EngAct">
+        <Type _="t_fl.TORQUE.TQ"/>
+        <code _="ItfCom_Etsys_Outp.ItfCom_Etsys_Outp_EtsysInp.tq_EngAct" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_MeclOilPmpCns" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftIn" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInSuprt" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInCalcDyn" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_CluReqDec1PwrFlowChg" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(CFG_OUTP_HYD_GEN2) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="CFG_OUTP_HYD_GEN2 $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInDifReq" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInDifPred" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_CE_AirPahReq" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInDifT3Pred" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInMax" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInMaxErr_Ctrl" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInMaxErr_MecObsvr" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInMaxNoErr_Ctrl" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInMaxNoErr_MecObsvr" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInMin" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInMaxWoLnchCtrl" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftOutDyn" Type="t_fl.TORQUE.TQ_2">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_SplitHybStgy" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(CFG_OUTP_K0) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="CFG_OUTP_K0 $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_TrsmLossEng" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_TrsmLossShaftOut" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInForCrp" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(CFG_OUTP_ILC) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="CFG_OUTP_ILC $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInMaxReq" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInMinReq" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tqg_ShaftInMaxReq" Type="t_fl.TORQUEGRDT.TQG">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tqg_ShaftInMinReq" Type="t_fl.TORQUEGRDT.TQG">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="c_TrsmOil" Type="t_fl.TEMPERATURE.C">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_PhaShift" Type="Def_Etsys.eStPhaShift">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_PwrFlowAct" Type="Def_Etsys.ePwrFlow">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_PwrFlowTar" Type="Def_Etsys.ePwrFlow">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="c_CluAct" IndexType="Def_Etsys.eClu" Type="t_fl.TEMPERATURE.C">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="st_CluAct" IndexType="Def_Etsys.eClu" Type="Def_Etsys.eCluStAct">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="i_VlvBP" IndexType="Def_Etsys.eOutPort" Type="t_fl.CURRENT.I">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="i_OutpStgReq" IndexType="Def_Etsys.eOutPort" Type="t_fl.CURRENT.I">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="i_OutpStgPart0Req" IndexType="Def_Etsys.eOutPort" Type="t_fl.CURRENT.I">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="i_OutpStgPart1Req" IndexType="Def_Etsys.eOutPort" Type="t_fl.CURRENT.I">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="i_OutpStgPart2Req" IndexType="Def_Etsys.eOutPort" Type="t_fl.CURRENT.I">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="i_OutpStgPart3Req" IndexType="Def_Etsys.eOutPort" Type="t_fl.CURRENT.I">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="tq_CluAct" IndexType="Def_Etsys.eClu" Type="t_fl.TORQUE.TQ_2">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="tq_CluDrg" IndexType="Def_Etsys.eClu" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="st_ShaftTrbTC_Trac" Type="Def_Etsys.eTrac">
+        <code _="'E_TRAC_NONE'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="tq_CluReq" IndexType="Def_Etsys.eClu" Type="t_fl.TORQUE.TQ_2">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="n_CluDif" IndexType="Def_Etsys.eClu" Type="t_fl.SPEED.N_2">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="n_ShaftInVirt" Type="t_fl.SPEED.N" if="CFG_OUTP_ILC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_FltInjActv" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_TestModActvn" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_ExcdTqEngMaxLimnReq" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="s_MilgFromNab" Type="t_fl.DISTANCE.S">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="idx_Shift" Type="Def_Etsys.eIdxShift">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="idx_PwrFlowDirChg" Type="Def_Etsys.eIdxPwrFlowDirChg">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="idx_ShiftInShift" Type="Def_Etsys.eIdxShiftInShift">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_ShiftDlyCmbEngStrtFricAdpn" if="CFG_OUTP_K0" Type="Def_Etsys.eShiftDly">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_ShiftTyp" Type="Def_Etsys.eShiftTyp">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_NShaftInDifTarCtrlActv" Type="t.TBOOL">
+        <code _="'((tBool) 0)'" if="$Not(CFG_OUTP_K0) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="CFG_OUTP_K0 $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_ShaftInDifTarCtrl" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="$Not(CFG_OUTP_K0) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="CFG_OUTP_K0 $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="idx_DynNShaftInDifTarCtrl" Type="Def_Etsys.eIdxDyn">
+        <code _="'E_IDX_DYN_NORM'" if="$Not(CFG_OUTP_K0) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="CFG_OUTP_K0 $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="p_LineVlvReq" Type="t_fl.PRESSURE.P">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="p_LineVlvReqNom" Type="t_fl.PRESSURE.P">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="p_Vlv" IndexType="Def_Etsys.eOutPort" Type="t_fl.PRESSURE.P">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="p_VlvReq" IndexType="Def_Etsys.eOutPort" Type="t_fl.PRESSURE.P">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="f_ThermLoadHiActv" Type="t.TBOOL" if="CFG_OUTP_HYD_GEN4">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_TrsmCtrlActv" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="cnt_ActtnOut0to7Sts" Type="Def_Etsys.eStsSig">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="cnt_ActtnOut" IndexType="Def_Etsys.eOutPort" Type="t.UI32">
+        <code _="'((ui32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="ctrl_DiagSeqFctActvn" Type="t.BITCODED.UBIT32">
+        <code _="'((ui32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="ctrl_ProtnSeqFctActvn" IndexType="Def_Etsys.eBitRng" Type="t.BITCODED.UBIT32">
+        <code _="'((ui32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="ctrl_SubstSeqFctActvn" IndexType="Def_Etsys.eBitRng" Type="t.BITCODED.UBIT32">
+        <code _="'((ui32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="ctrl_SeqFctActvn" IndexType="Def_Etsys.eBitRng" Type="t.BITCODED.UBIT32">
+        <code _="'((ui32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="st_OilSplySatn" Type="Def_Etsys.eOilSplySatn">
+        <code _="'E_OIL_SPLY_SATN_NONE'" if="($Not(CFG_OUTP_OIL_SPLY_SATN)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="(CFG_OUTP_OIL_SPLY_SATN) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="volg_OilSrcReq" Type="t_fl.VOLUMEGRDT.VOLG">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_MonFctActvn" Type="t.BITCODED.UBIT32">
+        <code _="'((ui32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_IntLnchCluSlipStAvl" Type="t.TBOOL" if="CFG_OUTP_ILC">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_RatGearMonUthActv" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_RatGearMonLthActv" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_MonLnchCluNoClsRatMonErr" Type="t.TBOOL" if="CFG_OUTP_ILC">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_RatShiftUpMonUthActv" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_RatShiftUpMonLthActv" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_RatShiftDwnMonUthActv" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_RatShiftDwnMonLthActv" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_DurnToStrtTqIntvReq" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_DurnToStrtTqIntvReqAirPah" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_DurnToEndTqIntvReq" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_DurnToEndTqIntvReqAirPah" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_DurnToStrtPRC_Pred" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="t_TqOverlapTar" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_ShaftOut" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_NeutFct" Type="Def_Etsys.eNeutFct">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_CE_DifReq" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_EM_DifReq" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_EM_CtrlrMax" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_EM_CtrlrMin" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_EM_Res" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(CFG_OUTP_K0) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="CFG_OUTP_K0 $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_CE_MaxForK0_ProtnCtrl" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_CE_MaxForK0_ProtnMecObsvr" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_NeutLevPredSailing" Type="Def_Etsys.eNeutLev">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftPmpTC_HydAct" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftPmpTC_HydTar" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftPmpTC_HydPred" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftPmpTC_HydMin" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftPmpTC_HydGearAct" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftPmpTC_HydGearTar" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftPmpTC_HydGearTarPred" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="tq_ShaftInCalc" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_ShaftIn" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="rat_Gear" IndexType="Def_Etsys.eGear" Type="t_fl.FACTOR.FAC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="pwr_CluCoolg" IndexType="Def_Etsys.eClu" Type="t_fl.POWER.PWR">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="perc_PistEstimd" IndexType="Def_Etsys.eClu" Type="t_fl.PERCENT.PERC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="n_TC_DifReq" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_PrioHiDynOilFlowActv" Type="t.TBOOL" if="CFG_OUTP_HYD_GEN4">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_IEP_Req" if="CFG_OUTP_HYD_E26_29_39_SELN" Type="Def_Etsys.eStIEP">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="c_TqCnvrOilAct" Type="t_fl.TEMPERATURE.C">
+        <code _="'((fl32) 0)'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="k_TC_Gain" Type="t_fl.FACTOR.FAC">
+        <code _="'((fl32) 1)'" if="($Not(CFG_OUTP_TC)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="(CFG_OUTP_TC) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="k_TC_Gain_GearTarPredMdfd" Type="t_fl.FACTOR.FAC" if="CFG_OUTP_TC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_ShaftInMinReqAdpn" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_AdpnCmbEngStrt" if="CFG_OUTP_K0" Type="Def_Etsys.eStCmbEngStrtReq">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_AdpnValRstCfmd" Type="Def_Etsys.eAdpnValRstCfmd">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_ActvAdpnStgy" Type="Def_Etsys.eStActvAdpnStgy">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="p_CluAdpnMemOffsRaw" IndexType="Def_Etsys.eClu" Type="t_fl.PRESSURE.P">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="t_CluAdpnMemOffsRaw" IndexType="Def_Etsys.eClu" Type="t_fl.TIME.T_2">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="volg_PasEM_Coolg" Type="t_fl.VOLUMEGRDT.VOLG" if="CFG_OUTP_VOLG_COOLG">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="volg_SecCircActRadr" Type="t_fl.VOLUMEGRDT.VOLG" if="CFG_OUTP_VOLG_COOLG">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="c_TrsmCoolrInp" Type="t_fl.TEMPERATURE.C">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="c_TrsmCoolrOutl" Type="t_fl.TEMPERATURE.C">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_EngMaxAllwd" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="n_EngMaxAllwdAry" IndexType="Def_Etsys.eNEngLimReqSeq" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="f_TqGrdtMaxLimActv" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_EngDampgDeactvnAdpnReq" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_EngDampgDeactvnCtrlReq" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="idx_DynNShaftInMinReqCtrl" Type="Def_Etsys.eDynNShaftInMinReq">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="idx_DynNShaftInMinReqAdpn" Type="Def_Etsys.eDynNShaftInMinReq">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_ShiftUpDlyPlsAdpn" Type="Def_Etsys.eShiftUpDly">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_ProtnFctLvlILC" if="CFG_OUTP_ILC_HOTINFO" Type="Def_Etsys.eProtnFctLvl">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_ProtnCluK0" Type="Def_Etsys.eProtnClu">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_ProtnCluK0_TqLimRlvDetd" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_TCC_DlyReq" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_PwrFlowIncAdpnGearChgReq" Type="Def_Etsys.eGearChgReq">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="p_PrimPmpFlood" Type="t_fl.PRESSURE.P" if="CFG_OUTP_HYD_GEN4">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="p_SecPmpFlood" Type="t_fl.PRESSURE.P" if="CFG_OUTP_VOLG_COOLG">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="st_CluActtn" IndexType="Def_Etsys.eClu" Type="Def_Etsys.eStCluActtn">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="st_MuxPrioPSP_EM_Req" Type="Def_Etsys.eMuxPrioPSP_EM_Req">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_MainSeqFctOilFillgCluPrepn" Type="Def_Etsys.eStMainSeq" if="CFG_OUTP_OIL_FILLG_MOD">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="perc_MaxDeIndcrLowrThdMonGear" IndexType="Def_Etsys.eGear" Type="t_fl.PERCENT.PERC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="perc_MaxDeIndcrUpprThdMonGear" IndexType="Def_Etsys.eGear" Type="t_fl.PERCENT.PERC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="perc_MaxDeIndcrLowrThdMonShiftDwn" IndexType="Def_Etsys.eIdxShiftDwn" Type="t_fl.PERCENT.PERC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="perc_MaxDeIndcrUpprThdMonShiftDwn" IndexType="Def_Etsys.eIdxShiftDwn" Type="t_fl.PERCENT.PERC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="perc_MaxDeIndcrLowrThdMonShiftUp" IndexType="Def_Etsys.eIdxShiftUp" Type="t_fl.PERCENT.PERC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="perc_MaxDeIndcrUpprThdMonShiftUp" IndexType="Def_Etsys.eIdxShiftUp" Type="t_fl.PERCENT.PERC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="perc_NDifMaxDeIndcrLowrThd" Type="t_fl.PERCENT.PERC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="perc_NDifMaxDeIndcrUpprThd" Type="t_fl.PERCENT.PERC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_PlsAdpnGlb_EEP" Type="Def_Etsys.eStPlsAdpnGlb">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_SecPmpFlood" Type="Def_Etsys.eStDualCircPmp" if="CFG_OUTP_HYD_GEN4">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_AdpnValStore" Type="Def_Etsys.eStAdpnStore">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_Qly" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_CfmStkPAdpn" Type="Def_Etsys.eStCfmStkPAdpn">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_AdpnGlbPrevnCdn" Type="t.BITCODED.UBIT16">
+        <code _="ItfCom_Etsys_Outp.ItfCom_Etsys_Outp_UseCaseCoorr.ctrl_AdpnGlbPrevnCdn" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_AdpnReqExt" Type="t.BITCODED.UBIT32">
+        <code _="'((ui32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_NQlyAbort" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_SpdEngSTADAAbort" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_AdpnSeqActvn" Type="Def_Etsys.eAdpn">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_AdpnSeqCall" Type="Def_Etsys.eAdpn">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_NQly" Type="Def_Etsys.eNQly">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_STADA" Type="Def_Etsys.eStSTADA">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_STADAMain" Type="Def_Etsys.eStSTADAMain">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_STADASubFct" Type="Def_Etsys.eStSTADASubFct">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="idx_AdpnCluPrio" Type="Def_Etsys.eClu">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="idx_STADATestCase_PrioClu" Type="Def_Etsys.eClu">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_ShaftOutFil">
+        <Type _="t_fl.SPEED.N"/>
+        <code _="ItfCom_Etsys_Outp.ItfCom_Etsys_Outp_Inp.n_ShaftOutFil" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_ShaftOutFilEnhd">
+        <Type _="t_fl.SPEED.N"/>
+        <code _="ItfCom_Etsys_Outp.ItfCom_Etsys_Outp_Inp.n_ShaftOutFilEnhd" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="rat_GearTar" Type="t_fl.FACTOR.FAC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_ShaftInFil">
+        <Type _="t_fl.SPEED.N"/>
+        <code _="ItfCom_Etsys_Outp.ItfCom_Etsys_Outp_Inp.n_ShaftInFil" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="rat_GearAct" Type="t_fl.FACTOR.FAC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_CnctCluModReq" Type="Def_Etsys.eCluMod">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_MainSeqFctSlipCtrl" Type="Def_Etsys.eStMainSeq">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_MainSeqFctHybModChg" Type="Def_Etsys.eStMainSeq">
+        <code _="'E_ST_MAIN_SEQ_PAS'" if="$Not(CFG_OUTP_K0) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="CFG_OUTP_K0 $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_ShaftInPwrTrsmDi" Type="t_fl.SPEED.N" if="CFG_OUTP_ILC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="n_ShaftInPwrTrsmDiSts" Type="Def_Etsys.eStsSig" if="CFG_OUTP_ILC">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="perc_OilFilLoadTot" if="CFG_OUTP_HYD_GEN4" Type="t_fl.PERCENT.PERC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="perc_OilFtgValTot" if="CFG_OUTP_HYD_GEN4" Type="t_fl.PERCENT.PERC">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="cnt_AdpnStkPLifTiWrm_EEP" IndexType="Def_Etsys.eClu" Type="t.UI16" if="CFG_OUTP_SHIFT_STGY_AGS">
+        <code _="'((ui16) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="n_ShaftInSyncTarPred" Type="t_fl.SPEED.N">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_AdpnQlyStkPCluB" Type="Def_Etsys.eStAdpnQlyLev">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_OilChgReq" if="CFG_OUTP_HYD_GEN4" Type="Def_Etsys.eStOilChgReq">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_OperatingMod" Type="Def_Etsys.eStShiftMod">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="st_AdpnQlyStkPWrmExtd" IndexType="Def_Etsys.eClu" Type="Def_Etsys.eStAdpnQlyLev">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="ctrl_AdpnIninStkPActv" Type="t.BITCODED.UBIT8">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_AdpnIninBstTiActv" Type="t.BITCODED.UBIT8">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_ModLnchElmProtn" Type="Def_Etsys.eStLnchElmProtn" if="CFG_OUTP_ST_STALL_SPEED_PROTECTION $Or CFG_OUTP_LNCH_ELM_PROTN">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_CluOverheatDetd" Type="t.BITCODED.UBIT8" if="CFG_OUTP_CLT_OVER_HEAT_PROTN">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="volg_VlvClu" IndexType="Def_Etsys.eClu" Type="t_fl.VOLUMEGRDT.VOLG">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetMeasurementTable name="tq_CluReqActtn" IndexType="Def_Etsys.eClu" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="tq_ShaftInMaxReqDmdAdpn" Type="t_fl.TORQUE.TQ">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetMeasurementTable name="st_CluAdpnReqActvn" IndexType="Def_Etsys.eClu" Type="Def_Etsys_MecObsvr.eCluAdpnReq">
+        <code _="ItfCom_Etsys_Outp.ItfCom_Etsys_Outp_MecActtn.st_CluAdpnReqActvn" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetMeasurementTable>
+      <GetFunction name="ctrl_STADABstTiNcsrByAdpnQly" Type="t.BITCODED.UBIT8">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_STADABstTiNcsrByAdpnFrq" Type="t.BITCODED.UBIT8">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_STADAStkPNcsrByAdpnQly" Type="t.BITCODED.UBIT8">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_STADAStkPNcsrByAdpnFrq" Type="t.BITCODED.UBIT8">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_VehEOLAdpnBstTiNcsrByAdpnQly" Type="t.BITCODED.UBIT8">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="ctrl_VehEOLAdpnStkPNcsrByAdpnQly" Type="t.BITCODED.UBIT8">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_LoLbrctnDetd" Type="t.TBOOL">
+        <code _="'((tBool) 0)'" if="CFG_OUTP_HYD_GEN4 $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="$Not(CFG_OUTP_HYD_GEN4) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name=" t_TCU_Off" Type="t_fl.TIME.T">
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_PLineAvl" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_MainSeqFctSlipDecoupl" Type="Def_Etsys.eStMainSeq">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_HIS" Type="Def_Etsys.eStHIS">
+        <code _="'E_ST_HIS_EMPTY'" if="$Not(CFG_MECACTTN_HYDRAULIC_2G) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV) $And CFG_MECACTTN_HYDRAULIC_2G"/>
+      </GetFunction>
+      <GetFunction name="st_AuxOilSplySeln" Type="Def_Etsys.eAuxOilSply">
+        <code _="'E_AUX_OIL_SPLY_NONE'" if="$Not(CFG_MECACTTN_HYDRAULIC_2G) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV) $And CFG_MECACTTN_HYDRAULIC_2G"/>
+      </GetFunction>
+      <GetFunction name="idx_DynNShaftInReq" Type="Def_Etsys.eDynNShaftInReq">
+        <code _="'E_DYN_N_SHAFT_IN_REQ_NONE'" if="($Not(CFG_OUTP_SPD_RED_LNCH)) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="(CFG_OUTP_SPD_RED_LNCH) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="st_TrsmTypSeln" Type="Def_Etsys.eTrsmTyp8HP2G">
+        <code _="'E_TRSM_TYP_8HP2G'" if="$Not(CFG_MECACTTN_HYDRAULIC_2G) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV) $And CFG_MECACTTN_HYDRAULIC_2G"/>
+      </GetFunction>
+      <GetFunction name="p_LinePrkgLockActtn" Type="t_fl.PRESSURE.P">
+        <code _="'((fl32) 0)'" if="$Not(CFG_MECACTTN_HYDRAULIC_2G) $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((fl32) 0)'" if="$Not(UT_SERVICE_ACTV) $And CFG_MECACTTN_HYDRAULIC_2G"/>
+      </GetFunction>
+      <GetFunction name="f_MaiPmpLeakDetd" Type="t.TBOOL">
+        <code _="'((tBool) 0)'" if="CFG_OUTP_HYD_GEN4 $And $Not(UT_SERVICE_ACTV)"/>
+        <code _="'((ui8) 0)'" if="$Not(CFG_OUTP_HYD_GEN4) $And $Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_ErrReact_EXTNEUTRALFAST" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_ErrReact_PRND12" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_ErrReact_D6DIRECT" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+      <GetFunction name="f_ErrReact_PPMINPRESSURE" Type="t.TBOOL">
+        <code _="'((ui8) 0)'" if="$Not(UT_SERVICE_ACTV)"/>
+      </GetFunction>
+    </ExternalInterface>
+  </Module>
+</LIMOOX>
