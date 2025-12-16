@@ -8,19 +8,19 @@ class player:
         temp.penup()
         temp.goto(0,-230)
         temp.setheading(90)
-        temp.shapesize(2)
+        temp.shapesize(1)
         self.Player = temp
 
     def Left(self):
         pos = self.Player.pos()
         if pos[0] >= -300:
-            self.Player.goto(pos[0] - 30, pos[1])
+            self.Player.goto(pos[0] - 5, pos[1])
     def Right(self):
         pos = self.Player.pos()
         if pos[0] <= 300:
-            self.Player.goto(pos[0] + 30, pos[1])
+            self.Player.goto(pos[0] + 5, pos[1])
     def Up(self):
         pos = self.Player.pos()
         if pos[1] <= 200:
-            self.Player.goto(pos[0], pos[1] + 30)
+            self.Player.goto(pos[0], pos[1] + 5)
 
