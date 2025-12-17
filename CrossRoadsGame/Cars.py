@@ -1,12 +1,12 @@
 import turtle as T
 import random
-import time
+import Score
 
 class cars:
     def __init__(self):
         temp = T.Turtle()
-        # temp.color([random.randint(0,250),random.randint(0,250),random.randint(0,250)])
-        temp.color('white')
+        temp.speed(10)
+        temp.color(random.random(),random.random(),random.random())
         temp.penup()
         temp.shape('square')
         temp.shapesize(1,2)
@@ -15,16 +15,19 @@ class cars:
         self.car = temp
 
 
+
 class Comp:
     def __init__(self):
         self.CompCars = []
+        self.Out = Score.score(2)
 
     def append(self,car):
         self.CompCars.append(car)
 
-    def move(self):
+    def move(self,Speed):
         for i in self.CompCars:
-            i.forward(40)
+            i.forward(Speed)
+
 
     def delete(self):
         for i in range(len(self.CompCars)):
@@ -35,7 +38,8 @@ class Comp:
 
     def collision(self,player):
         for i in self.CompCars:
-            if i.distance(player.pos()) <= 20:
+            if i.distance(player.pos()) <= 15:
+                self.Out.Out()
                 return 0
         return 1
 

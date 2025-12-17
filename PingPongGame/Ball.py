@@ -34,7 +34,7 @@ class ball:
         self.Ball.setheading(random.randint(0,360))
 
     def move(self):
-        self.Ball.forward(0.1)
+        self.Ball.forward(0.3)
 
 
 
