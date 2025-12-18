@@ -38,7 +38,7 @@ class Comp:
 
     def collision(self,player):
         for i in self.CompCars:
-            if i.distance(player.pos()) <= 15:
+            if i.distance(player) <= 20:
                 self.Out.Out()
                 return 0
         return 1

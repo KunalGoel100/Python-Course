@@ -23,13 +23,13 @@ class player:
             self.Player.goto(pos[0] + 10, pos[1])
     def Up(self):
         pos = self.Player.pos()
-        self.Player.goto(pos[0], pos[1] + 7)
+        self.Player.goto(pos[0], pos[1] + 10)
     def Next(self):
 
         if self.Player.ycor() >= 190:
             self.Player.goto(0,-230)
             self.Score += self.score.UpdateScore()
-            return [self.Score,10]
+            return [self.Score,5]
         return [self.Score,0]
 
 

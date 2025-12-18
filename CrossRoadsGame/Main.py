@@ -1,7 +1,10 @@
+import time
+
 import Lines
 import turtle as T
 import Player
 import Cars
+import random
 
 Screen = T.Screen()
 Screen.bgcolor('white')
@@ -22,19 +25,23 @@ Screen.onkey(Player.Right, 'Right')
 Screen.onkey(Player.Up, 'Up')
 
 CompCar = Cars.Comp()
-Speed = 30
+Speed = 10
 Score = 1
 while gameon:
     Screen.tracer(0)
     [Score,speed] = Player.Next()
     Speed += speed
     for i in range(Score):
-        car = Cars.cars()
-        CompCar.append(car.car)
+        chance = random.randint(0,10)
+        if chance == 1:
+            car = Cars.cars()
+            CompCar.append(car.car)
 
-    Screen.tracer(1)
+
 
     CompCar.move(Speed)
+    time.sleep(0.1)
+    Screen.tracer(1)
 
     CompCar.delete()
     gameon = CompCar.collision(Player.Player)
