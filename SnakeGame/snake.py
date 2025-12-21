@@ -32,6 +32,7 @@ class Snake:
 
     def Move(self):
         Screen = T.Screen()
+        Screen.tracer(0)
         for i in range(len(self.SnakeBody) - 1, 0, -1):
             self.SnakeBody[i].goto(self.SnakeBody[i - 1].pos())
             # time.sleep(0.5/len(self.SnakeBody))
@@ -83,7 +84,7 @@ class Snake:
         Screen = T.Screen()
         posx = random.randint(-11,11)*20
         posy = random.randint(-11,11)*20
-        Screen.tracer(1)
+        Screen.tracer(0)
         self.food.setposition((posx,posy))
         Screen.tracer(0)
     def checkFood(self):
