@@ -29,7 +29,6 @@ while gameOn == 1:
         gameOn = S.Selfcheck()
 
     S.checkFood()
-
 print(f'Final Score: {S.score}')
 
 

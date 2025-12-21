@@ -16,10 +16,15 @@ class Snake:
         Sc.color("white")
         Sc.setposition(0, 210)
         self.ScoreT = Sc
-
         self.food = f
-        self.SnakeBody = []
+
         self.score = 0
+        self.TopScore = 0
+        self.SnakeBody = []
+        self.CreateSnake()
+
+    def CreateSnake(self):
+        self.SnakeBody = []
         for i in range(0,3,1):
             Box = T.Turtle()
             Box.color('white')
@@ -60,14 +65,26 @@ class Snake:
     def Boundarycheck(self):
         if self.SnakeBody[0].xcor() < -250 or self.SnakeBody[0].xcor() > 250:
             print('Wall Collision')
-            self.ScoreT.goto(0,0)
-            self.ScoreT.write("GAME OVER", False, "center", ("Arial", 15, "normal"))
-            return 0
+            # self.ScoreT.goto(0,0)
+            # self.ScoreT.write("GAME OVER", False, "center", ("Arial", 15, "normal"))
+            self.score = 0
+            self.ScoreT.clear()
+            for i in self.SnakeBody:
+                i.hideturtle()
+            del self.SnakeBody
+            self.CreateSnake()
+            return 1
         if self.SnakeBody[0].ycor() < -250 or self.SnakeBody[0].ycor() > 250:
             print('Wall Collision')
-            self.ScoreT.goto(0, 0)
-            self.ScoreT.write("GAME OVER", False, "center", ("Arial", 15, "normal"))
-            return 0
+            # self.ScoreT.goto(0, 0)
+            # self.ScoreT.write("GAME OVER", False, "center", ("Arial", 15, "normal"))
+            self.score = 0
+            self.ScoreT.clear()
+            for i in self.SnakeBody:
+                i.hideturtle()
+            del self.SnakeBody
+            self.CreateSnake()
+            return 1
         else:
             return 1
     def Selfcheck(self):
@@ -75,10 +92,16 @@ class Snake:
 
             if self.SnakeBody[0].distance(self.SnakeBody[i]) < 10:
                 print('Self Collision')
-                self.ScoreT.goto(0, 0)
-                self.ScoreT.write("GAME OVER", False, "center", ("Arial", 15, "normal"))
+                self.score = 0
+                self.ScoreT.clear()
+                for i in self.SnakeBody:
+                    i.hideturtle()
+                del self.SnakeBody
+                self.CreateSnake()
+                # self.ScoreT.goto(0, 0)
+                # self.ScoreT.write("GAME OVER", False, "center", ("Arial", 15, "normal"))
 
-                return 0
+                return 1
         return 1
     def randomfood(self):
         Screen = T.Screen()
@@ -103,5 +126,7 @@ class Snake:
 
     def Score(self):
         self.score += 1
+        if self.score >= self.TopScore:
+            self.TopScore = self.score
         self.ScoreT.clear()
-        self.ScoreT.write(f"Score: {self.score}",False, "center", ("Arial",15,"normal"))
+        self.ScoreT.write(f"Score: {self.score}, TopScore: {self.TopScore}",False, "center", ("Arial",15,"normal"))
