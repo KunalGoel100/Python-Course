@@ -19,8 +19,11 @@ class Snake:
         self.food = f
 
         self.score = 0
-        self.TopScore = 0
         self.SnakeBody = []
+        # reading high score
+        file = open("HighScore.txt","r")
+        self.TopScore = int(file.read().strip())
+        file.close()
         self.CreateSnake()
 
     def CreateSnake(self):
@@ -33,6 +36,7 @@ class Snake:
             Box.penup()
             Box.forward(-i*20)
             self.SnakeBody.append(Box)
+        self.ScoreT.write(f"Score: {self.score}, HighScore: {self.TopScore}", False, "center", ("Arial", 15, "normal"))
 
 
     def Move(self):
@@ -128,5 +132,8 @@ class Snake:
         self.score += 1
         if self.score >= self.TopScore:
             self.TopScore = self.score
+            file = open("HighScore.txt","w")
+            file.write(str(self.TopScore))
+            file.close()
         self.ScoreT.clear()
-        self.ScoreT.write(f"Score: {self.score}, TopScore: {self.TopScore}",False, "center", ("Arial",15,"normal"))
+        self.ScoreT.write(f"Score: {self.score}, HighScore: {self.TopScore}",False, "center", ("Arial",15,"normal"))
