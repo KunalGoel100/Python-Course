@@ -27,6 +27,8 @@ score = 0
 while len(file) >= 1:
     User = screen.textinput(f"Score {score}/{MaxScore}","Enter State Name")
 
+    if User == "Exit":
+        break
 
     if User.title() in file.state.values:
         print("Correct")
@@ -39,4 +41,7 @@ while len(file) >= 1:
     else:
         print("Wrong")
 print("Game Complete")
-screen.exitonclick()
+
+newFile = open("MissedStates.csv","w")
+newFile.write(str(file.state))
+newFile.close()
