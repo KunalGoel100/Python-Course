@@ -1,12 +1,15 @@
 from tkinter import *
+import random
 
+import pandas
+from pandas import *
 screen = Tk()
-screen.minsize(height=500, width=500)
+screen.minsize(height=500, width=520)
 screen.config(padx=100,bg="white")
 
 canvas = Canvas(height=400,width=300,bg="white",highlightthickness=0)
 logoImage = PhotoImage(file="PadLock_Image.png")
-canvas.create_image(150,200,image=logoImage,)
+canvas.create_image(150,200,image=logoImage)
 canvas.place(x=0,y=0)
 
 ##################################
@@ -28,12 +31,70 @@ entry_Email.place(x=30,y=430)
 entry_Password = Entry(width=34,borderwidth=2)
 entry_Password.place(x=30,y=460)
 # #################################
-button_Generate = Button(text="Generate Password")
-button_Generate.place(x=200,y=430)
+def GeneratePassword():
+    number = [1,2,3,4,5,6,7,8,9]
+    alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+    symbol = ["!","@","#","$","%","^","&","*","(",")","_","+"]
+    characters = [number,alphabet,symbol]
+    password = []
+    NewPassword = []
+    FinalPassword = ""
+    for i in range(0,random.randint(8,20),1):
+        x = random.randint(0,2)
+        password.append(random.sample(characters[x],1))
+    for j in password:
+        NewPassword.append(j[0])
+    for j in NewPassword:
+        FinalPassword += str(j)
+    entry_Password.delete(0,END)
+    entry_Password.insert(0,string=FinalPassword)
+
+button_Generate = Button(text="Generate Password",border=0.5, command=GeneratePassword)
+button_Generate.place(x=280,y=425)
 #
-# button_Add = Button(text="Add to storage")
-# button_Add.place()
+def CheckRepetition():
+    count = CheckEmpty()
+    if count == 0:
+        file = pandas.read_csv("Password_Storage.csv")
+        if entry_website.get() in file.Website.values:
+            print("Duplicate")
+            canvas.itemconfig(error_message, text="Duplicate Website", fill="#ff7f50")
+        else:
+            canvas.itemconfig(error_message, text="Added to Storage", fill="#008000")
+            AddToStorage()
+    elif count == 1:
+        print("Enter Website")
+        canvas.itemconfig(error_message,text="Enter Website", fill="#cf1020")
+    elif count == 2:
+        print("Enter Email/Username")
+        canvas.itemconfig(error_message, text="Enter Email/Username", fill="#cf1020")
+    elif count == 3:
+        print("Enter Password")
+        canvas.itemconfig(error_message, text="Enter Password", fill="#cf1020")
+
+def CheckEmpty():
+    count = 0
+    if entry_website.get() == "":
+        count = 1
+    elif entry_Email.get() == "":
+        count = 2
+    elif entry_Password.get() == "":
+        count = 3
+    return count
+
+def AddToStorage():
+    file = open("Password_Storage.csv","a")
+    file.write(f"{entry_website.get()}, {entry_Email.get()}, {entry_Password.get()}\n")
+    file.close()
+button_Add = Button(text="Add to storage",border=0.5, command=CheckRepetition)
+button_Add.place(x=280,y=455)
 #
+error_message = canvas.create_text(150,220,text="",font=("Ariel",15,"bold"),fill="black")
+
+
+
+
+
 
 
 
