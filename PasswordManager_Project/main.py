@@ -1,6 +1,6 @@
 from tkinter import *
 import random
-
+import pyperclip
 import pandas
 from pandas import *
 screen = Tk()
@@ -49,6 +49,7 @@ def GeneratePassword():
         FinalPassword += str(j)
     entry_Password.delete(0,END)
     entry_Password.insert(0,string=FinalPassword)
+    pyperclip.copy(FinalPassword)
 
 button_Generate = Button(text="Generate Password",border=0.5, command=GeneratePassword)
 button_Generate.place(x=280,y=425)
@@ -87,6 +88,9 @@ def AddToStorage():
     file = open("Password_Storage.csv","a")
     file.write(f"{entry_website.get()}, {entry_Email.get()}, {entry_Password.get()}\n")
     file.close()
+    entry_Password.delete(0,END)
+    entry_website.delete(0,END)
+
 button_Add = Button(text="Add to storage",border=0.5, command=CheckRepetition)
 button_Add.place(x=280,y=455)
 #
