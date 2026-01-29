@@ -27,6 +27,7 @@ entry_website.place(x=30,y=400)
 #
 entry_Email = Entry(width=34,borderwidth=2)
 entry_Email.place(x=30,y=430)
+entry_Email.insert(0, string="kunal.goel@zf.com")
 #
 entry_Password = Entry(width=34,borderwidth=2)
 entry_Password.place(x=30,y=460)
