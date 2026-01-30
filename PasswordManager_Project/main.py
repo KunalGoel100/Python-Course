@@ -86,13 +86,26 @@ def CheckEmpty():
 
 def AddToStorage():
     file = open("Password_Storage.csv","a")
-    file.write(f"{entry_website.get()}, {entry_Email.get()}, {entry_Password.get()}\n")
+    file.write(f"{entry_website.get()},{entry_Email.get()},{entry_Password.get()}\n")
     file.close()
     entry_Password.delete(0,END)
     entry_website.delete(0,END)
 
 button_Add = Button(text="Add to storage",border=0.5, command=CheckRepetition)
 button_Add.place(x=280,y=455)
+#
+def Search():
+    file = pandas.read_csv("Password_Storage.csv")
+    temp = file[file.Website == entry_website.get()]
+    print(temp.Password)
+    if not temp.empty:
+        entry_Password.delete(0, END)
+        entry_Password.insert(0, string=temp.Password.values[0])
+        entry_Email.delete(0,END)
+        entry_Email.insert(0,string=temp.Username.values[0])
+
+button_Search = Button(text="Search",border=0.5, command=Search)
+button_Search.grid(row=1,column=3)
 #
 error_message = canvas.create_text(150,220,text="",font=("Ariel",15,"bold"),fill="black")
 
