@@ -13,14 +13,14 @@ canvas.create_image(150,200,image=logoImage)
 canvas.place(x=0,y=0)
 
 ##################################
-text_Website = Label(text="Website")
-text_Website.place(x=-80,y=400)
+text_Website = Label(text="Website", width=14, bg="white", font=("ariel",10,"bold"))
+text_Website.place(x=-85,y=400)
 #
-text_Email = Label(text="Email/Username")
-text_Email.place(x=-80,y=430)
+text_Email = Label(text="Email/Username", width=14, bg="white", font=("ariel",10,"bold"))
+text_Email.place(x=-85,y=430)
 #
-text_Password = Label(text="Password")
-text_Password.place(x=-80,y=460)
+text_Password = Label(text="Password", width=14, bg="white", font=("ariel",10,"bold"))
+text_Password.place(x=-85,y=460)
 # ##################################
 entry_website = Entry(width=34,borderwidth=2)
 entry_website.place(x=30,y=400)
@@ -51,7 +51,7 @@ def GeneratePassword():
     entry_Password.insert(0,string=FinalPassword)
     pyperclip.copy(FinalPassword)
 
-button_Generate = Button(text="Generate Password",border=0.5, command=GeneratePassword)
+button_Generate = Button(text="Generate Password",border=0.5, command=GeneratePassword, width=16)
 button_Generate.place(x=280,y=425)
 #
 def CheckRepetition():
@@ -91,7 +91,7 @@ def AddToStorage():
     entry_Password.delete(0,END)
     entry_website.delete(0,END)
 
-button_Add = Button(text="Add to storage",border=0.5, command=CheckRepetition)
+button_Add = Button(text="Add to storage",border=0.5, command=CheckRepetition, width=16)
 button_Add.place(x=280,y=455)
 #
 def Search():
@@ -104,8 +104,8 @@ def Search():
         entry_Email.delete(0,END)
         entry_Email.insert(0,string=temp.Username.values[0])
 
-button_Search = Button(text="Search",border=0.5, command=Search)
-button_Search.grid(row=1,column=3)
+button_Search = Button(text="Search",border=0.5, command=Search, width=16)
+button_Search.place(x=280,y=395)
 #
 error_message = canvas.create_text(150,220,text="",font=("Ariel",15,"bold"),fill="black")
 
