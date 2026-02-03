@@ -117,8 +117,9 @@ def Search():
             entry_Password.insert(0, string=data[entry_website.get()]["Password"])
             entry_Email.delete(0, END)
             entry_Email.insert(0, string=data[entry_website.get()]["Email"])
+            canvas.itemconfig(error_message, text="Found", fill="#008000")
         else:
-            pass
+            canvas.itemconfig(error_message, text="Not Found", fill="#ff7f50")
         file.close()
     except FileNotFoundError:
         print("FileNotFoundError")
