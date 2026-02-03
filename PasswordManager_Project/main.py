@@ -2,6 +2,7 @@ from tkinter import *
 import random
 import pyperclip
 import pandas
+import json
 from pandas import *
 screen = Tk()
 screen.minsize(height=500, width=520)
@@ -57,8 +58,9 @@ button_Generate.place(x=280,y=425)
 def CheckRepetition():
     count = CheckEmpty()
     if count == 0:
-        file = pandas.read_csv("Password_Storage.csv")
-        if entry_website.get() in file.Website.values:
+        file = open("Password_Storage.json","r")
+        data = json.load(file)
+        if entry_website.get() in data:
             print("Duplicate")
             canvas.itemconfig(error_message, text="Duplicate Website", fill="#ff7f50")
         else:
@@ -85,9 +87,21 @@ def CheckEmpty():
     return count
 
 def AddToStorage():
-    file = open("Password_Storage.csv","a")
-    file.write(f"{entry_website.get()},{entry_Email.get()},{entry_Password.get()}\n")
-    file.close()
+    Temp_Dict = {}
+    Temp_Dict[entry_website.get()] = {"Email": entry_Email.get(),
+                                      "Password": entry_Password.get()}
+    try:
+        file = open("Password_Storage.json","r")
+        Original_Dict = json.load(file)
+    except:
+        file = open("Password_Storage.json","w")
+        json.dump(Temp_Dict,file,indent=4)
+    else:
+        file = open("Password_Storage.json", "w")
+        Original_Dict.update(Temp_Dict)
+        json.dump(Original_Dict, file,indent=4)
+    finally:
+        file.close()
     entry_Password.delete(0,END)
     entry_website.delete(0,END)
 
@@ -95,14 +109,20 @@ button_Add = Button(text="Add to storage",border=0.5, command=CheckRepetition, w
 button_Add.place(x=280,y=455)
 #
 def Search():
-    file = pandas.read_csv("Password_Storage.csv")
-    temp = file[file.Website == entry_website.get()]
-    print(temp.Password)
-    if not temp.empty:
-        entry_Password.delete(0, END)
-        entry_Password.insert(0, string=temp.Password.values[0])
-        entry_Email.delete(0,END)
-        entry_Email.insert(0,string=temp.Username.values[0])
+    try:
+        file = open("Password_Storage.json","r")
+        data = json.load(file)
+        if entry_website.get() in data:
+            entry_Password.delete(0, END)
+            entry_Password.insert(0, string=data[entry_website.get()]["Password"])
+            entry_Email.delete(0, END)
+            entry_Email.insert(0, string=data[entry_website.get()]["Email"])
+        else:
+            pass
+        file.close()
+    except FileNotFoundError:
+        print("FileNotFoundError")
+
 
 button_Search = Button(text="Search",border=0.5, command=Search, width=16)
 button_Search.place(x=280,y=395)
