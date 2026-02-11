@@ -38,7 +38,7 @@ def RandomWord():
         canvas.itemconfig(Word, text="")
 
     elif count == 0:
-        idx = random.randint(0, 100)
+        idx = random.randint(0, 5)
         canvas.itemconfig(Tile, image=Green)
         canvas.itemconfig(Language,text="French")
         try:
@@ -64,6 +64,10 @@ def Remove():
     data["English"].pop(idx)
     print(idx)
     print(data)
+    # file = open("french_words2.csv","w")
+    dataframe = pandas.DataFrame(data)
+    dataframe.to_csv("french_words2.csv", index=False)
+
 
 def TickAction():
     global count, rem
