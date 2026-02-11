@@ -26,9 +26,13 @@ TickButton.grid(row=2, column=2)
 Language = canvas.create_text(400,150,text="",font=("Ariel",40,"italic"))
 Word = canvas.create_text(400,263,text="",font=("Ariel",60,"bold"))
 
-file = pandas.read_csv("french_words2.csv")
-data = file.to_dict()
-
+try:
+    file = pandas.read_csv("french_words2.csv")
+except:
+    file = pandas.read_csv("french_words.csv")
+    data = file.to_dict()
+finally:
+    data = file.to_dict()
 
 
 def RandomWord():
@@ -68,7 +72,6 @@ def Remove():
     dataframe = pandas.DataFrame(data)
     dataframe.to_csv("french_words2.csv", index=False)
 
-
 def TickAction():
     global count, rem
     if count == 0:
@@ -77,8 +80,6 @@ def TickAction():
         Remove()
         rem = 0
     RandomWord()
-
-
 
 TickButton.config(command=TickAction)
 CrossButton.config(command=RandomWord)
