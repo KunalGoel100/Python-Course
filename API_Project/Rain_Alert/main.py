@@ -22,16 +22,18 @@ elif day["weather"][0]["id"] < 600:
     Forecast = "Rainy"
 elif day["weather"][0]["id"] < 700:
     Forecast = "Snowy"
-elif day["weather"][0]["id"] >= 800:
+elif day["weather"][0]["id"] == 800:
+    Forecast = "Clear"
+elif day["weather"][0]["id"] > 800:
     Forecast = "Cloudy"
 else:
     pass
-print(Forecast)
+print(data)
 
 Actual_SID = "ACb890420c4e9555ef114ae4d3970a7b43"
 Actual_Token = "cde9dd3a009c066aae349b77da800da9"
 Actual_Number = "whatsapp:+14155238886"
-Actual_Receiver_Number = "whatsapp:+919743718133"
+Actual_Receiver_Number = "whatsapp:+919654291639"
 
 client = Client(Actual_SID,Actual_Token)
 message = client.messages.create(
