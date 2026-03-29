@@ -24,7 +24,8 @@ price = temp1[0].getText()
 temp = price.split(",")
 price = [temp[0]+temp[1]]
 Actualprice = float(price[0])
-Targetprice = float(3000.0)
+Targetprice = float(2000.0)
 if Actualprice <= Targetprice:
     print(f"Go Buy the cooker for {Actualprice} Rs")
-
+else:
+    print(f"Current price is {Actualprice} Rs, and Target price is {Targetprice} Rs")
